@@ -2,9 +2,10 @@ const express = require('express');
 const http = require('http');
 const cors = require('cors');
 const { Server } = require('socket.io');
-const connectDB = require('./db/connect.js');
-const transcriptRoutes = require('./routes/transcriptRoutes');
-const socketHandler = require('./signaling/socketHandler');
+const connectDB = require('./db/connect.js.js');
+const transcriptRoutes = require('./routes/transcriptRoutes.js');
+const socketHandler = require('./signaling/socketHandler.js');
+require('dotenv').config();
 
 const app = express();
 app.use(cors());
