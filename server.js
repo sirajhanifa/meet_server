@@ -1,0 +1,19 @@
+const express = require('express');
+const http = require('http');
+const cors = require('cors');
+const { Server } = require('socket.io');
+const connectDB = require('./db/connect.js');
+const transcriptRoutes = require('./routes/transcriptRoutes');
+const socketHandler = require('./signaling/socketHandler');
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+connectDB();
+app.use('/api', transcriptRoutes);
+
+const server = http.createServer(app);
+const io = new Server(server, { cors: { origin: '*' } });
+socketHandler(io);
+
+server.listen(5000, () => console.log('🚀 Server running on port 5000'));
